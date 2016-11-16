@@ -6,15 +6,15 @@ import configureStore from './store/configureStore';
 const state = JSON.parse(localStorage.getItem('state'));
 const store = configureStore(state || {});
 
-const App = require('./App').default;
+const Root = require('./Root').default;
 
 const render = (Component) => {
-  ReactDOM.render(<Component {...store} />, document.getElementById('root'));
+  ReactDOM.render(<Component store={store} />, document.getElementById('root'));
 };
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const newApp = require('./App').default;
+  module.hot.accept('./Root', () => {
+    const newApp = require('./Root').default;
     render(newApp);
   });
 }
@@ -24,7 +24,7 @@ const saveState = debounce(() => {
 }, 1000);
 store.subscribe(() => {
   saveState();
-  render(App);
+  render(Root);
   if (process.env.ENV === 'development') {
     console.log('state', store.getState());
   }
