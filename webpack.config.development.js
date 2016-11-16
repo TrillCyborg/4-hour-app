@@ -10,27 +10,27 @@ var config = {
   output: {
     path: __dirname + '/dist',
     publicPath: 'http://localhost:8000/dist/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       loader: 'babel-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.css$/,
-      loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+      loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
     }, {
       test: /\.png|\.svg$/,
-      loader: 'file-loader'
-    }]
+      loader: 'file-loader',
+    }],
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-  ]
+  ],
 };
 
 config.target = webpackTargetElectronRenderer(config);

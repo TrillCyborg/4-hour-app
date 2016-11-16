@@ -6,14 +6,15 @@ import configureStore from './store/configureStore';
 const state = JSON.parse(localStorage.getItem('state'));
 const store = configureStore(state || {});
 
-let App = require('./App').default;
+const App = require('./App').default;
+
 const render = (Component) => {
   ReactDOM.render(<Component {...store} />, document.getElementById('root'));
 };
 
 if (module.hot) {
-  module.hot.accept('./App', function() {
-    let newApp = require('./App').default;
+  module.hot.accept('./App', () => {
+    const newApp = require('./App').default;
     render(newApp);
   });
 }
