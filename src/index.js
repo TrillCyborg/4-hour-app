@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import debounce from 'debounce';
 import configureStore from './store/configureStore';
 
-const state = JSON.parse(localStorage.getItem('state'));
-const store = configureStore(state || {});
+// const state = JSON.parse(localStorage.getItem('state'));
+// const store = configureStore(state);
+const store = configureStore();
 
 const Root = require('./Root').default;
 
